@@ -1,18 +1,24 @@
 <template>
   <div id="EmployeeTab">
-    <h1>Employee's tab</h1>
+    <h2>Employee's tab</h2>
     <form>
-      <h2>What's the minimum you would expect to be paid?
+      <h4>What's the minimum you would expect to be paid?
         <br>
-        {{ employeeOfferFromProps }}€
-      </h2>
+        <br>
+      </h4>
+      <h3>
+        <span v-if="employeeOfferFromProps">{{ employeeOfferFromProps }}€</span>
+      </h3>
       <div v-if="showEmployeeInput">
         <input type="number" v-model="employeeInputOffer" @focus="$event.target.select()">
+        <br>
+        <br>
+        <button
+          class="btn-submit"
+          type="submit"
+          v-on:click="$emit('employee-submitted-offer', employeeInputOffer)"
+        >Submit</button>
       </div>
-      <button
-        type="submit"
-        v-on:click="$emit('employee-submitted-offer', employeeInputOffer)"
-      >Submit</button>
     </form>
   </div>
 </template>
@@ -31,3 +37,6 @@ export default {
   }
 };
 </script>
+
+<style>
+</style>
