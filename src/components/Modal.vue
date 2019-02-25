@@ -132,7 +132,7 @@ export default {
   padding: 5px 20px;
   outline: none;
   border: none;
-  border-radius: 20px;
+  border-radius: 3px;
   font-size: 0.8em;
   color: white;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);

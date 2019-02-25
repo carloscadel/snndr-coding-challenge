@@ -195,7 +195,7 @@ input[type="number"]::-webkit-outer-spin-button {
   transition: all 0.2s;
 }
 .btn-submit:hover {
-  background-color: hsl(180, 43%, 44%);
+  background-color: hsl(180, 100%, 35%);
   transition: all 0.2s;
 }
 .btn-submit:active {
