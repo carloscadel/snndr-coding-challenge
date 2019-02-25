@@ -8,21 +8,23 @@
     <h3>
       <span v-if="employerOfferFromProps">{{ employerOfferFromProps }}€</span>
     </h3>
-    <form v-if="showEmployerInput">
-      <input
-        type="number"
-        placeholder="Make an offer..."
-        v-bind:class="{ flashIn: isFlashIn, flashOut: isFlashOut }"
-        v-model="employerInputOffer"
-        @focus="$event.target.select()"
-      >
-      <br>
-      <br>
-      <button
-        class="btn-submit"
-        type="submit"
-        v-on:click="$emit('employer-submitted-offer', employerInputOffer)"
-      >Submit</button>
+    <form>
+      <div v-if="showEmployerInput">
+        <input
+          type="number"
+          placeholder="Make an offer..."
+          v-bind:class="{ flashIn: isFlashIn, flashOut: isFlashOut }"
+          v-model="employerInputOffer"
+          @focus="$event.target.select()"
+        >
+        <br>
+        <br>
+        <button
+          class="btn-submit"
+          type="submit"
+          v-on:click="$emit('employer-submitted-offer', employerInputOffer)"
+        >Submit</button>
+      </div>
     </form>
   </div>
 </template>

@@ -84,26 +84,21 @@ export default {
         this.isFlashIn = false;
         this.isFlashOut = true;
       }, 250);
-      return;
+      return "flash";
     },
     employeeSubmittedOffer(offer) {
-      console.log(offer);
       if (offer < 0 || offer === "" || offer === null) {
         this.flash();
-        // return "invalid offer";
-        return;
+        return "invalid offer";
       }
       this.employeeOffer = offer;
       this.showEmployeeInput = false;
       this.checkSuccess();
     },
     employerSubmittedOffer(offer) {
-      console.log(offer);
-
       if (offer < 0 || offer === "" || offer === null) {
         this.flash();
-        // return "invalid offer";
-        return;
+        return "invalid offer";
       }
       this.employerOffer = offer;
       this.showEmployerInput = false;
@@ -116,9 +111,7 @@ export default {
         } else {
           this.modalHeaderMessage = "Failure!";
         }
-        setTimeout(() => {
-          this.showModal = true;
-        }, 250);
+        this.showModal = true;
       }
     }
   }
