@@ -3,7 +3,7 @@
   <transition name="modal">
     <div class="modal-mask">
       <div class="modal-wrapper">
-        <div class="modal-container">
+        <div class="modal-container" v-bind:class="borderTopClass()">
           <div class="modal-header">
             <slot name="header">
               <h2>{{ headerMessage }}</h2>
@@ -17,9 +17,7 @@
               <b>{{ employerOffer }}€</b>
               <br>
               <br>
-              <span
-                v-if="londonTemp != null"
-              >And the current temperature in London is {{ londonTemp }} °C</span>
+              <span>And the current temperature in London is {{ londonTemp }} °C</span>
             </p>
           </div>
           <div class="modal-footer">
@@ -45,10 +43,15 @@ export default {
   },
   data() {
     return {
-      londonTemp: null
+      londonTemp: ""
     };
   },
   methods: {
+    borderTopClass() {
+      return this.headerMessage
+        .toLowerCase()
+        .substring(0, this.headerMessage.length - 1);
+    },
     reloadPage() {
       window.location.reload();
     }
@@ -86,7 +89,14 @@ export default {
   display: table-cell;
   vertical-align: middle;
 }
-
+.success {
+  border-top: solid 5px lightgreen;
+  border-bottom: solid 5px lightgreen;
+}
+.failure {
+  border-top: solid 5px lightcoral;
+  border-bottom: solid 5px lightcoral;
+}
 .modal-container {
   width: 500px;
   /* height: 500px; */
@@ -113,14 +123,20 @@ export default {
 }
 
 .modal-start-over-button {
-  background-color: hsl(0, 79%, 72%);
-  padding: 10px 15px;
+  background-color: hsl(180, 100%, 30%);
+  cursor: pointer;
+  padding: 5px 20px;
   outline: none;
   border: none;
-  border-radius: 3px;
+  border-radius: 20px;
+  font-size: 0.8em;
   color: white;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
-  transition: all 0.1s;
+  transition: all 0.2s;
+}
+.modal-start-over-button:hover {
+  background-color: hsl(180, 100%, 35%);
+  transition: all 0.2s;
 }
 
 .modal-start-over-button:active {
