@@ -22,8 +22,8 @@ describe("Home", () => {
   })
   it("Sets showEmployeeInput and showEmployerInput props to false when valid offer is submitted", () => {
     const wrapper = mount(Home)
-    wrapper.vm.employeeSubmittedOffer("1")
-    wrapper.vm.employerSubmittedOffer("1")
+    wrapper.vm.employeeSubmittedOffer(1)
+    wrapper.vm.employerSubmittedOffer(1)
     expect(wrapper.vm.showEmployeeInput).to.equal(false) && expect(wrapper.vm.showEmployerInput).to.equal(false)
   })
   it("Modal is not shown when one of the offers submitted is not valid", () => {
@@ -32,16 +32,16 @@ describe("Home", () => {
     wrapper.vm.employerOffer = null
     wrapper.vm.checkSuccess()
     expect(wrapper.vm.showModal).to.equal(false)
-    wrapper.vm.employeeOffer = "1"
+    wrapper.vm.employeeOffer = 1
     wrapper.vm.employerOffer = null
     wrapper.vm.checkSuccess()
     expect(wrapper.vm.showModal).to.equal(false)
     wrapper.vm.employeeOffer = null
-    wrapper.vm.employerOffer = "1"
+    wrapper.vm.employerOffer = 1
     wrapper.vm.checkSuccess()
     expect(wrapper.vm.showModal).to.equal(false)
-    wrapper.vm.employeeOffer = "1"
-    wrapper.vm.employerOffer = "1"
+    wrapper.vm.employeeOffer = 1
+    wrapper.vm.employerOffer = 1
     wrapper.vm.checkSuccess()
     expect(wrapper.vm.showModal).to.equal(true)
   })
@@ -62,18 +62,33 @@ describe("EmployeeTab", () => {
   })
 })
 
+describe("EmployerTab", () => {
+  it("Renders input and submit button", () => {
+    const wrapper = shallowMount(EmployerTab, {
+      propsData: { showEmployerInput: true }
+    })
+    expect(wrapper.find("input").exists() && wrapper.find(".btn-submit").exists()).to.equal(true)
+  })
+  it("Does not ender input nor submit button", () => {
+    const wrapper = shallowMount(EmployerTab, {
+      propsData: { showEmployerInput: false }
+    })
+    expect(wrapper.find("input").exists() && wrapper.find(".btn-submit").exists()).to.equal(false)
+  })
+})
+
 describe("Modal", () => {
   it("modal-container div class is 'success' if Employer's offer is equal or greater than the Employee's", () => {
     var homeWrapper = mount(Home)
-    homeWrapper.vm.employeeOffer = "1"
-    homeWrapper.vm.employerOffer = "1"
+    homeWrapper.vm.employeeOffer = 1
+    homeWrapper.vm.employerOffer = 1
     homeWrapper.vm.checkSuccess()
     var modalWrapper = shallowMount(Modal, {
       propsData: { headerMessage: homeWrapper.vm.modalHeaderMessage }
     })
     expect(modalWrapper.vm.borderTopClass()).to.equal("success")
-    homeWrapper.vm.employeeOffer = "1"
-    homeWrapper.vm.employerOffer = "2"
+    homeWrapper.vm.employeeOffer = 1
+    homeWrapper.vm.employerOffer = 2
     homeWrapper.vm.checkSuccess()
     var modalWrapper = shallowMount(Modal, {
       propsData: { headerMessage: homeWrapper.vm.modalHeaderMessage }
@@ -82,8 +97,8 @@ describe("Modal", () => {
   })
   it("modal-container div class is 'failure'  if Employer's offer is lower than the Employee's", () => {
     const homeWrapper = mount(Home)
-    homeWrapper.vm.employeeOffer = "2"
-    homeWrapper.vm.employerOffer = "1"
+    homeWrapper.vm.employeeOffer = 2
+    homeWrapper.vm.employerOffer = 1
     homeWrapper.vm.checkSuccess()
     const modalWrapper = shallowMount(Modal, {
       propsData: { headerMessage: homeWrapper.vm.modalHeaderMessage }

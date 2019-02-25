@@ -22,7 +22,7 @@
         <button
           class="btn-submit"
           type="submit"
-          v-on:click="$emit('employer-submitted-offer', employerInputOffer)"
+          @click="$emit('employer-submitted-offer', employerInputOffer)"
         >Submit</button>
       </div>
     </form>
@@ -30,10 +30,11 @@
 </template>
 
 <script>
+// eslint-disable
 export default {
   name: "EmployerTab",
   props: {
-    employerOfferFromProps: String,
+    employerOfferFromProps: Number,
     showEmployerInput: Boolean,
     isFlashIn: Boolean,
     isFlashOut: Boolean
@@ -45,9 +46,3 @@ export default {
   }
 };
 </script>
-
-<style>
-input {
-  text-align: center;
-}
-</style>

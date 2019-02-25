@@ -1,3 +1,4 @@
+// eslint-disable
 <template>
   <div id="home">
     <div class="card-container">
@@ -5,19 +6,20 @@
         <button
           class="btn-tab employee"
           v-bind:class="{ activeTab: showEmployeeTab }"
-          v-on:click="tabSwap('employee')"
+          @click="tabSwap('employee')"
         >Employee's Tab</button>
         <button
           class="btn-tab employer"
           v-bind:class="{ activeTab: showEmployerTab }"
-          v-on:click="tabSwap('employer')"
-        >Employer's Tab</button>
+          @click="tabSwap('employer')"
+          >Employer's Tab
+        </button>
       </div>
       <div>
         <EmployeeTab
           v-if="showEmployeeTab"
           :employeeOfferFromProps="employeeOffer"
-          v-on:employee-submitted-offer="employeeSubmittedOffer"
+          @employee-submitted-offer="employeeSubmittedOffer"
           :showEmployeeInput="showEmployeeInput"
           :isFlashIn="isFlashIn"
           :isFlashOut="isFlashOut"
@@ -25,7 +27,7 @@
         <EmployerTab
           v-if="showEmployerTab"
           :employerOfferFromProps="employerOffer"
-          v-on:employer-submitted-offer="employerSubmittedOffer"
+          @employer-submitted-offer="employerSubmittedOffer"
           :showEmployerInput="showEmployerInput"
           :isFlashIn="isFlashIn"
           :isFlashOut="isFlashOut"
@@ -91,7 +93,7 @@ export default {
         this.flash();
         return "invalid offer";
       }
-      this.employeeOffer = offer;
+      this.employeeOffer = Math.round(offer);
       this.showEmployeeInput = false;
       this.checkSuccess();
     },
@@ -100,7 +102,7 @@ export default {
         this.flash();
         return "invalid offer";
       }
-      this.employerOffer = offer;
+      this.employerOffer = Math.round(offer);
       this.showEmployerInput = false;
       this.checkSuccess();
     },
@@ -159,8 +161,9 @@ input {
   padding: 5px 20px;
   width: 150px;
   font-size: 0.8em;
+  text-align: center;
   border: none;
-  border-radius: 20px;
+  border-radius: 3px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   transition: all 0.3s;
 }
@@ -185,7 +188,7 @@ input[type="number"]::-webkit-outer-spin-button {
   padding: 5px 20px;
   outline: none;
   border: none;
-  border-radius: 20px;
+  border-radius: 3px;
   font-size: 0.8em;
   color: white;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);

@@ -1,6 +1,6 @@
 module.exports = {
   runtimeCompiler: true,
-  lintOnSave: undefined,
+  lintOnSave: false,
 
   pwa: {
     name: 'Sennder Coding Challenge'

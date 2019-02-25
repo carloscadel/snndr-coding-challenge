@@ -1,4 +1,4 @@
-<!-- template for the modal component -->
+// eslint-disable
 <template type="text/x-template" id="Modal">
   <transition name="modal">
     <div class="modal-mask">
@@ -17,12 +17,16 @@
               <b>{{ employerOffer }}€</b>
               <br>
               <br>
-              <span>And the current temperature in London is {{ londonTemp }} °C</span>
+              <span>
+                And the current temperature in London is {{ londonTemp }} °C
+              </span>
             </p>
           </div>
           <div class="modal-footer">
             <slot name="footer">
-              <button class="modal-start-over-button" v-on:click="reloadPage">Start Over</button>
+              <button class="modal-start-over-button" @click="reloadPage">
+                Start Over
+              </button>
             </slot>
           </div>
         </div>
@@ -38,8 +42,8 @@ export default {
   name: "Modal",
   props: {
     headerMessage: String,
-    employeeOffer: String,
-    employerOffer: String
+    employeeOffer: Number,
+    employerOffer: Number
   },
   data() {
     return {
